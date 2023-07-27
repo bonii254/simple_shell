@@ -73,7 +73,7 @@ char *path_126_error(shell_struct *arg)
 }
 
 /**
-  * env_error - generate an error message when there is an issue adding or
+  * env_var_error - generate an error message when there is an issue adding or
   * removing from the environment variables.
   * @arg: pointer to a shell structure.
   *

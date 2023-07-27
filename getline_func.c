@@ -14,7 +14,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
 	int i;
 	ssize_t input_len = 0, chars_read = 0;
-	char *buff = NULL, *temp;
+	char *buff = NULL;
 	char c = 'b';
 
 	fflush(stream);
@@ -36,13 +36,12 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 		}
 		if (input_len >= BUFSIZE)
 		{
-			temp = _realloc(buff, input_len, input_len + 1);
-			if (!temp)
+			buff = _realloc(buff, input_len, input_len + 1);
+			if (!buff)
 			{
 				free(buff);
 				return (-1);
 			}
-			buff = temp;
 		}
 		buff[input_len] = c;
 		input_len++;
