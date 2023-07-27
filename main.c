@@ -41,11 +41,8 @@ void free_shell_struct(shell_struct *arg)
 {
 	unsigned int i = 1;
 
-	while (arg->_environ[i])
-	{
+	for (i= 0; arg->_environ[i]; i++)
 		free(arg->_environ[i]);
-		i++;
-	}
 	free(arg->_environ);
 	free(arg->pid);
 }
@@ -73,4 +70,4 @@ void set_shell_struct(shell_struct *arg, char **av)
 		arg->_environ[j] = _strdup(environ[j]);
 	arg->_environ[j] = NULL;
 	arg->pid = _itoa(getpid());
-	}
+}
