@@ -21,9 +21,6 @@
 
 extern char **environ;
 
-int access(const char *path, int mode);
-int execve(const char *path, char *const argv[], char *const envp[]);
-
 /**
   * struct alin - data structure used to store state of the shell
   * @av: An array of strings representing the command-line arguments.
@@ -99,6 +96,9 @@ typedef struct builtin_s
 	char *name;
 	int (*func_ptr)(shell_struct *arg);
 } builtin_t;
+
+int access(const char *path, int mode);
+int execve(const char *path, char *const argv[], char *const envp[]);
 
 void cd_dot(shell_struct *arg);
 void cd_home(shell_struct *arg);
