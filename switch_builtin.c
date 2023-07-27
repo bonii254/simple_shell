@@ -19,12 +19,13 @@ int (*_builtin(char *cmd))(shell_struct *)
 		{ "exit", exit_shell },
 		{ NULL, NULL }
 	};
-	while (builtin[j].name)
+
+	for (j = 0; builtin[j].name; j++)
 	{
 		if (_strcmp(builtin[j].name, cmd) == 0)
 			break;
-		j++;
 	}
+
 	return (builtin[j].func_ptr);
 }
 

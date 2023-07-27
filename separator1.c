@@ -162,5 +162,7 @@ int split_commands(shell_struct *arg, char *input)
 	free_separators_l(&head_s);
 	free_cmdln_list(&head_cmdln);
 
-	return (loop);
+	if (loop == 0)
+		return (0);
+	return (1);
 }

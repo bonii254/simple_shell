@@ -167,7 +167,10 @@ char *replace_var(char *input, shell_struct *arg)
 	new_len += old_len;
 	new_input = (char *) malloc(sizeof(char) * (new_len + 1));
 	if (!new_input)
-		return (NULL);
+	{
+		free(status);
+		return (input);
+	}
 
 	new_input[new_len] = '\0';
 	new_input = replace_ip(&head, input, new_input, new_len);

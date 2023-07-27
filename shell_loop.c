@@ -13,7 +13,7 @@ void shell_prompt(shell_struct *arg)
 
 	while (prompt)
 	{
-		write(STDOUT_FILENO, "$ ", 2);
+		write(STDIN_FILENO, "$ ", 3);
 		cmd_input = _readline(&in_eof);
 
 		if (in_eof != -1)
@@ -54,7 +54,7 @@ char *remove_comment(char *input)
 {
 	int i = 0, limit = 0;
 
-	while (input[i])
+	for (i = 0; input[i]; i++)
 	{
 		if (input[i] == '#')
 		{
@@ -66,7 +66,6 @@ char *remove_comment(char *input)
 			if (input[i - 1] == ' ' || input[i - 1] == '\t' || input[i - 1] == ';')
 				limit = i;
 		}
-		i++;
 	}
 	if (limit != 0)
 	{

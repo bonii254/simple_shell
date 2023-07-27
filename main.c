@@ -41,7 +41,7 @@ void free_shell_struct(shell_struct *arg)
 {
 	unsigned int i = 1;
 
-	for (i= 0; arg->_environ[i]; i++)
+	for (i = 0; arg->_environ[i]; i++)
 		free(arg->_environ[i]);
 	free(arg->_environ);
 	free(arg->pid);

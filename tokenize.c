@@ -62,7 +62,7 @@ char **split_line(char *input)
 	char **tokens;
 	char *token;
 	size_t byte_size;
-	size_t j = 1;
+	size_t j;
 
 	byte_size = TOK_BUFSIZE;
 	tokens = malloc(sizeof(char *) * TOK_BUFSIZE);
@@ -73,7 +73,7 @@ char **split_line(char *input)
 	}
 	token = _strtok(input, TOK_DELIM);
 	tokens[0] = token;
-	while (token != NULL)
+	for (j = 1; token != NULL; j++)
 	{
 		if (j == byte_size)
 		{
@@ -87,7 +87,6 @@ char **split_line(char *input)
 		}
 		token = _strtok(NULL, TOK_DELIM);
 		tokens[j] = token;
-		j++;
 	}
 	return (tokens);
 }

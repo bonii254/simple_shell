@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
-* *strchr - locate the first occurrence of a character in a string.
+* *_strchr - locate the first occurrence of a character in a string.
 * @s: a pointer to the null-terminated string in which
 * the search is performed.
 * @c: character to be located.
@@ -11,13 +11,13 @@
 * NULL is returned.
 */
 
-char *strchr(const char *s, int c)
+char *_strchr(const char *s, int c)
 {
 	while (*s != '\0')
 	{
 		if (*s == c)
 			return ((char *) s);
-		 s++;
+		s++;
 	}
 	if (*s == c)
 		return ((char *) s);
@@ -35,27 +35,23 @@ char *strchr(const char *s, int c)
 
 size_t _strspn(const char *s, const char *accept)
 {
-	size_t initial_len = 0, len1, len2, i, j, k;
+	int i, j, state;
 
-	len1 = _strlen(s);
-	len2 = _strlen(accept);
-
-	for (i = 0; i < len1; i++)
+	for (i = 0; *(s + i) != '\0'; i++)
 	{
-		k = 0;
-		for (j = 0; j < len2; j++)
+		state = 1;
+		for (j = 0; *(accept + j) != '\0'; j++)
 		{
-			if (accept[j] == s[i])
+			if (*(s + i) == *(accept + j))
 			{
-				k = 1;
+				state = 0;
 				break;
 			}
 		}
-		if (k == 0)
+		if (state == 1)
 			break;
-		initial_len++;
 	}
-	return (initial_len);
+	return (i);
 }
 
 /**
@@ -84,17 +80,24 @@ int _isNumeric(const char *s)
 
 void rev_string(char *s)
 {
-	char rev = s[0];
-	int counter = 0;
-	int i;
+	int count = 0, i, j;
+	char *str, temp;
 
-	while (s[counter] != '\0')
-		counter++;
-	for (i = 0; i < counter; i++)
+	while (count >= 0)
 	{
-		counter--;
-		rev = s[i];
-		s[i] = s[counter];
-		s[counter] = rev;
+		if (s[count] == '\0')
+			break;
+		count++;
+	}
+	str = s;
+
+	for (i = 0; i < (count - 1); i++)
+	{
+		for (j = i + 1; j > 0; j--)
+		{
+			temp = *(str + j);
+			*(str + j) = *(str + (j - 1));
+			*(str + (j - 1)) = temp;
+		}
 	}
 }

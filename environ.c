@@ -12,13 +12,14 @@
 
 int cmp_env_name(const char *envn, const char *name)
 {
-	int i = 0;
+	int i;
 
-	while (envn[i] != '\0' && envn[i] == name[i])
-		i++;
-	if (envn[i] == '=' && name[i] == '\0')
-		return (i + 1);
-	return (0);
+	for (i = 0; envn[i] != '='; i++)
+	{
+		if (envn[i] != name[i])
+			return (0);
+	}
+	return (i + 1);
 }
 
 /**

@@ -188,7 +188,7 @@ char *_strcat(char *dest, const char *src);
 int _strcmp(char *str1, char *str2);
 char *_strdup(const char *s);
 
-char *strchr(const char *s, int c);
+char *_strchr(const char *s, int c);
 size_t _strspn(const char *s, const char *accept);
 int _isNumeric(const char *s);
 void rev_string(char *s);
