@@ -13,7 +13,7 @@ void shell_prompt(shell_struct *arg)
 
 	while (prompt)
 	{
-		write(STDIN_FILENO, "$ ", 3);
+		write(STDOUT_FILENO, "$ ", 2);
 		cmd_input = _readline(&in_eof);
 
 		if (in_eof != -1)
